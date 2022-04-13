@@ -11,43 +11,38 @@
 #wkhu'v-d-vwdupdp-zdlwlqj-lq-wkh-vnb.
 
 #Note: The cipher only encrypts letters; symbols, such as -, remain unencrypted.
+import string
 
 def caesarCipher(s, k):
-    alphabet = list(map(chr, range(97, 123)))
-    lk = k - 1
+    alphabetm = string.ascii_lowercase
+    alphabetM = alphabetm.upper()
     pal = s
     s = ''
 
-    for i in (pal):
-        if i.islower() == False:
-            i = i.lower()
-            try:
-                ndx = alphabet.index(i)
-                dif = 25 - ndx
-                if dif > lk:
-                    ndx = ndx + k
-                    s += alphabet[ndx].upper()
-                else:
-                    ndx = lk - dif
-                    s += alphabet[ndx].upper()
-            except:
-                ndx = -1
-                s += i
+    for i in pal:
+        
+        if i in alphabetm:
+            a = alphabetm.index(i)
+            b = a + k
+            if b < len(alphabetm):
+                s += alphabetm[b]
+            else:
+                pos = b % 26
+                s += alphabetm[pos] 
+        
+        elif i in alphabetM:
+            a = alphabetM.index(i)
+            b = a + k
+            if b < len(alphabetM):
+                s += alphabetM[b] 
+            else:
+                pos = b % 26
+                s += alphabetM[pos]
         else:
-            try:
-                ndx = alphabet.index(i)
-                dif = 25 - ndx
-                if dif > lk:
-                    ndx = ndx + k
-                    s += alphabet[ndx]
-                else:
-                    ndx = lk - dif
-                    s += alphabet[ndx]
-            except:
-                ndx = -1
-                s += i
+            s += i
 
     return s
+
 
 if __name__ == '__main__':
     #numero de caracteres de la frase
