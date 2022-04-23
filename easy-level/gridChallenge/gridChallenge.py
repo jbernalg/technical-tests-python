@@ -4,27 +4,26 @@ import string
 def gridChallenge(grid):
     alphabet = string.ascii_lowercase
     gridOrder = []
+    sr =''
 
-    for i in range(len(grid)):
-        s = grid[i]
-        print(s)
-        print(s[i])
-        for j in range(len(grid)):
-            if j + 1 < len(grid):
-                a = alphabet.index(s[j])
-                b = alphabet.index(s[j+1])
-                print(a,b)
-                if a > b:
-                    a = b
-                    b = a
-                    print(a,b)
-                    s.replace(s[j],alphabet[a])
-                    s.replace(s[j+1],alphabet[b])
-                    print(s)
-            else:
-                gridOrder.append(s)
+    for subS in grid:
+        #subS son los string de grid
+        sN = [] 
 
-    print(gridOrder)
+        for j in subS:
+            index= alphabet.index(j)
+            sN.append(index) #lista de indices de subS
+
+        sN.sort() #ordenamiento de indices de mayor a menor
+
+        for ord in sN:
+            #sr es el string ordenado alfabeticamente
+            sr += alphabet[ord]
+
+        gridOrder.append(sr)
+        sr = ''
+    
+    return gridOrder
 
 
 if __name__ == '__main__':
