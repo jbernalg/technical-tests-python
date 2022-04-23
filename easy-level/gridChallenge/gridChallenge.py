@@ -4,7 +4,8 @@ import string
 def gridChallenge(grid):
     alphabet = string.ascii_lowercase
     gridOrder = []
-    sr =''
+    n =  len(grid)
+    respuesta ='YES'
 
     for subS in grid:
         #subS son los string de grid
@@ -14,16 +15,17 @@ def gridChallenge(grid):
             index= alphabet.index(j)
             sN.append(index) #lista de indices de subS
 
-        sN.sort() #ordenamiento de indices de mayor a menor
-
+        sN.sort() #ordenamiento de indices 
         for ord in sN:
-            #sr es el string ordenado alfabeticamente
-            sr += alphabet[ord]
+            gridOrder.append(ord)
 
-        gridOrder.append(sr)
-        sr = ''
+    for i in range(n):
+        if  gridOrder[i] > gridOrder[i+3]:
+            respuesta ='NO'
+            break
     
-    return gridOrder
+
+    return respuesta
 
 
 if __name__ == '__main__':
