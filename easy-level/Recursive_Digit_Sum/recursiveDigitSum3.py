@@ -1,21 +1,10 @@
 def superDigit(n, k):
-    #print(n*k)
-    string_number = n*k
-    #number = int(string_number)
     sum = 0
-    band = True 
-
-    while band:
-        for i in string_number:
-            sum += int(i)
-
-        if sum < 10:
-            band = False
-        else:
-            string_number = str(sum)
-            sum = 0
-        
-    return sum
+    for i in n:
+        sum = sum + int(i)*k
+    if sum < 10:
+        return sum
+    return superDigit(str(sum), 1)
 
 
 if __name__ == '__main__':
